@@ -44,7 +44,9 @@ export class CustomConsole extends HTMLElement {
     // create the log message element and append to the DOM
     const logMessage = document.createElement("div");
     const timestamp = new Date().toLocaleTimeString();
-    logMessage.textContent = `${timestamp}: ${message}`;
+    logMessage.textContent = `${timestamp}${
+      tagName && ` [${tagName}]`
+    }: ${message}`;
     if (tagName && this.tags[tagName]) {
       // assign the message color
       logMessage.style.color = this.tags[tagName]?.color;

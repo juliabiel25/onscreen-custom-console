@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="module" src="custom-console.js"></script>
+    <title>Onscreen custom console - demo</title>
+    <!-- import the custom console module -->
+    <script type="module" src="./onscreen-custom-console-package/index.js"></script>
 </head>
 <body>
-    <!-- on-screen console for logging purposes -->
-    <script>
-        const cc = document.createElement('custom-console');
-        cc.setAttribute('timeUntilMessageFade', '10000');
-        document.body.appendChild(cc)
-    </script>
-    
-    <script>
+    <!-- setup the custom console root element and assign attributes -->
+    <onscreen-custom-console timeUntilMessageFade="5000" tagsSettings=></onscreen-custom-console>
+
+    <!-- assign tag settings -->
+     <script type="module">
+         cc.setSettings('tags', {
+            '3d-scene': {
+                color: '#253587'
+            },
+            'error': {
+                color: 'red'
+            },
+            'warning': {
+                color: 'orange'
+            }
+         });
+     </script>
+
+    <script type="module">        
         setInterval(() => {
-            cc.log('Hello World')
+            // you can now cc.log from anywhere within the window DOM domain
+            cc.log('Hello World', 'error')
         }, 1000)
     </script>
 </body>
